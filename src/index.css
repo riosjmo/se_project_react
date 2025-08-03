@@ -1,0 +1,57 @@
+@import url(./vendor/normalize.css);
+
+@font-face {
+    font-family: 'Cabinet Grotesk Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Thin';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Thin.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Extralight';
+    font-style: normal;
+    font-weight: 200;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Extralight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Light';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Extrabold';
+    font-style: normal;
+    font-weight: 800;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Extrabold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk Black';
+    font-style: normal;
+    font-weight: 900;
+    src: url('./vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Black.woff') format('woff');
+}
