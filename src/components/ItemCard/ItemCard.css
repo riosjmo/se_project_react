@@ -1,0 +1,36 @@
+.item-card {
+  position: relative;
+  display: flex;
+  border-radius: 1px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 215px;
+}
+
+.item-card__name {
+  position: absolute;
+  display: flex;
+  top: 8px;
+  font-family: "Cabinet Grotesk Regular", sans-serif;
+  width: 72px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: white;
+  color: #000000;
+  opacity: 65%;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.item-card__image {
+  display: flex;
+  width: 328px;
+  height: 328px;
+  top: 279px;
+  left: 38px;
+  opacity: 1;
+  border-radius: 25px;
+  border: 1px solid #0000004D;
+}
