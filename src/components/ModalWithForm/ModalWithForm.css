@@ -8,6 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal__opened {
+  visibility: visible;
 }
 
 .modal__name_label {
@@ -47,6 +52,7 @@
   right: 28px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .modal__content {
