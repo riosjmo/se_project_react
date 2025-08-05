@@ -1,6 +1,3 @@
-.cards {
-}
-
 .cards__text {
   font-family: "Cabinet Grotesk Regular", sans-serif;
   font-weight: 700;
@@ -16,5 +13,5 @@
   justify-content: center;
   gap: 21px;
   padding: 0;
-  margin: 34px 0;
+  margin: 34px 0 0;
 }

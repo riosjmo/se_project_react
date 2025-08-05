@@ -10,7 +10,8 @@
 .item-card__name {
   position: absolute;
   display: flex;
-  top: 8px;
+  margin: 0;
+  top: 15px;
   font-family: "Cabinet Grotesk Regular", sans-serif;
   width: 72px;
   height: 24px;

@@ -1,6 +1,7 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
+import Footer from "../Footer/Footer";
 
 function Main({ weatherData }) {
   return (
@@ -20,6 +21,7 @@ function Main({ weatherData }) {
             })}
         </ul>
       </section>
+      <Footer />
     </main>
   );
 }
