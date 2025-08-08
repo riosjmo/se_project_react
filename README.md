@@ -20,4 +20,4 @@ Deployment:
 
 It is deployed on Github.
 
-[Deployement Link: https://riosjomo.github.io/se_project_react]
+[Deployement Link: [https://riosjomo.github.io/se_project_react](https://riosjmo.github.io/se_project_react/)]
