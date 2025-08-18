@@ -30,7 +30,6 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
             })}
         </ul>
       </section>
-      <Footer />
     </main>
   );
 }
