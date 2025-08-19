@@ -68,18 +68,21 @@ function App() {
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
 
-          <Routes> 
+          <Routes>
             <Route
               path="/"
               element={
                 <Main
                   weatherData={weatherData}
-                  handleCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
               }
             />
-            <Route path="/Profile" element={<Profile />} />
+            <Route
+              path="/Profile"
+              element={<Profile onCardClick={handleCardClick} />}
+            />
           </Routes>
           <Footer />
         </div>
