@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
-import { getItems } from "../../utils/api";
 
 export default function Profile({ onCardClick, clothingItems, onAddClick }) {
   return (

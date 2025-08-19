@@ -1,6 +1,5 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.png";
-import "../Profile/Profile.css"
 
 export default function SideBar() {
   return (

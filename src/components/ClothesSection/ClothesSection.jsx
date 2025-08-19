@@ -1,6 +1,5 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
-import "../Profile/Profile.css";
 
 export default function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
   return (
