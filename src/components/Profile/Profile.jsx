@@ -4,13 +4,7 @@ import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 import { getItems } from "../../utils/api";
 
-export default function Profile({ onCardClick }) {
-  const [clothingItems, setClothingItems] = useState([]);
-
-  useEffect(() => {
-    getItems().then((items) => setClothingItems(items));
-  }, []);
-
+export default function Profile({ onCardClick, clothingItems, onAddClick }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -20,6 +14,7 @@ export default function Profile({ onCardClick }) {
         <ClothesSection
           onCardClick={onCardClick}
           clothingItems={clothingItems}
+          onAddClick={onAddClick}
         />
       </section>
     </div>

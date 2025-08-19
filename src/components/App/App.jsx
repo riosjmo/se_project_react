@@ -12,7 +12,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
-import { getItems } from "../../utils/api";
+import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -46,8 +46,14 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
-    closeActiveModal();
+    postItem({ name, imageUrl, weather })
+      .then((savedItem) => {
+        setClothingItems((prevItems) => [savedItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Failed to add item:", error);
+      });
   };
 
   useEffect(() => {
@@ -68,6 +74,20 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  const handleDeleteCard = (card) => {
+  deleteItem(card._id)
+    .then(() => {
+      // remove the card from state
+      setClothingItems((prevItems) =>
+        prevItems.filter((item) => item._id !== card._id)
+      );
+      closeActiveModal(); // close the modal
+    })
+    .catch((error) => {
+      console.error("Failed to delete item:", error);
+    });
+};
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -91,7 +111,13 @@ function App() {
             />
             <Route
               path="/Profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  onAddClick={handleAddClick}
+                />
+              }
             />
           </Routes>
           <Footer />
@@ -105,6 +131,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          onDeleteCard={handleDeleteCard}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

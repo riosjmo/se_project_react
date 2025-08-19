@@ -10,7 +10,11 @@
   pointer-events: auto;
 }
 
-.modal__content_type_image {
+.modal__item {
+  padding: 0;
+}
+
+.modal__item_type_image {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +22,11 @@
   border-radius: 16px;
   overflow: hidden;
   padding: 0;
+  position: relative;
+  max-width: 496px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
 }
 
 .modal__image {
@@ -29,7 +38,6 @@
   width: 100%;
   background-color: white;
   margin-top: 20px;
-  margin-bottom: 32px;
   margin-left: 32px;
   box-sizing: border-box;
 }
@@ -53,4 +61,23 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
+}
+
+.item-modal__delete-btn {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-self: end;
+  color: #FF4D00;
+  font-family: "Cabinet Grotesk Regular", sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  margin-right: 25px;
+  cursor: pointer;
+  position: relative;
+  bottom: 55px;
+  right: 5px;
 }
