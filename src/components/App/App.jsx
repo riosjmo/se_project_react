@@ -12,6 +12,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
+import { getItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,7 +23,7 @@ function App() {
     isDay: false,
   });
 
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -60,6 +61,14 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -73,6 +82,7 @@ function App() {
               path="/"
               element={
                 <Main
+                  // pass clothingItems as a prop if not done yet already
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
