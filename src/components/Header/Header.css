@@ -65,6 +65,10 @@
   letter-spacing: 0%;
 }
 
+.header__username:hover {
+  color: #00000099;
+}
+
 .header__link {
   text-decoration: none;
   color: #000000;
