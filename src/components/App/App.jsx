@@ -11,9 +11,15 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { defaultClothingItems } from "../../utils/constants";
+import avatar from "../../assets/avatar.png";
 import Footer from "../Footer/Footer";
-import { getItems, postItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  postItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import { signup, signin, getUserData, updateUser } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -42,7 +48,7 @@ function App() {
 
   const handleRegister = ({ name, email, password }) => {
     // using a placeholder avatar URL
-    const avatar = "https://i.pravatar.cc/150?img=3";
+    const avatar = {avatar};
 
     signup({ name, avatar, email, password })
       .then(() => {
@@ -71,6 +77,29 @@ function App() {
         setCurrentUser(user);
       })
       .catch((err) => console.error("Login failed:", err));
+  };
+
+  const handleCardLike = ({ _id, likes }) => {
+    const token = localStorage.getItem("jwt");
+    const isLiked = likes.includes(currentUser._id);
+
+    if (!isLiked) {
+      addCardLike(_id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === _id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      removeCardLike(_id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === _id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const [weatherData, setWeatherData] = useState({
@@ -160,11 +189,10 @@ function App() {
     const token = localStorage.getItem("jwt");
     deleteItem(card._id, token)
       .then(() => {
-        // remove the card from state
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== card._id)
         );
-        closeActiveModal(); // close the modal
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Failed to delete item:", error);
@@ -190,10 +218,10 @@ function App() {
                 path="/"
                 element={
                   <Main
-                    // pass clothingItems as a prop if not done yet already
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -205,6 +233,7 @@ function App() {
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onAddClick={handleAddClick}
+                    onCardLike={handleCardLike}
                     onEditProfile={openEditProfile}
                   />
                 }

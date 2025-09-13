@@ -35,5 +35,19 @@
   left: 38px;
   opacity: 1;
   border-radius: 25px;
-  border: 1px solid #0000004D;
+  border: 1px solid #0000004d;
+}
+
+.item-card__like-button {
+  position: absolute;
+  top: 20px;
+  right: 90px;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.item-card__like-icon_active {
+  background-image: url("../../assets/liked.svg");
 }
