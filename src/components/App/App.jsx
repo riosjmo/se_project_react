@@ -18,9 +18,11 @@ import { signup, signin, getUserData } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -28,11 +30,11 @@ function App() {
       getUserData(token)
         .then((user) => {
           setCurrentUser(user);
-          console.log("User data fetched:", user);
+          setIsLoggedIn(true);
         })
-        .catch((err) => {
-          console.error("Invalid token:", err);
+        .catch(() => {
           localStorage.removeItem("jwt");
+          setIsLoggedIn(false);
         });
     }
   }, []);
@@ -60,12 +62,14 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          setCurrentUser(res.user || null);
+          setIsLoggedIn(true);
+          return getUserData(res.token);
         }
       })
-      .catch((error) => {
-        console.error("Login failed:", error);
-      });
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((err) => console.error("Login failed:", err));
   };
 
   const [weatherData, setWeatherData] = useState({
@@ -156,6 +160,7 @@ function App() {
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
+      <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__content">
           <Header
@@ -213,6 +218,7 @@ function App() {
           onDeleteCard={handleDeleteCard}
         />
       </div>
+      </CurrentUserContext.Provider>
     </CurrentTemperatureUnitContext.Provider>
   );
 }
