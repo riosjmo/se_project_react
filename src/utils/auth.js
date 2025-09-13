@@ -38,3 +38,14 @@ export const getUserData = (token) => {
     },
   }).then(checkResponse);
 };
+
+export function updateUser({ name, avatar }, token) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
