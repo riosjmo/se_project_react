@@ -48,7 +48,7 @@ function App() {
 
   const handleRegister = ({ name, email, password }) => {
     // using a placeholder avatar URL
-    const avatar = {avatar};
+    const avatar = { avatar };
 
     signup({ name, avatar, email, password })
       .then(() => {
@@ -64,6 +64,7 @@ function App() {
         console.error("Registration failed:", error);
       });
   };
+
   const handleLogin = ({ email, password }) => {
     signin({ email, password })
       .then((res) => {
@@ -100,6 +101,12 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    setIsLoggedIn(false);
   };
 
   const [weatherData, setWeatherData] = useState({
@@ -205,14 +212,14 @@ function App() {
     >
       <CurrentUserContext.Provider value={currentUser}>
         <div className="page">
-          <div className="page__content">
-            <Header
-              handleAddClick={handleAddClick}
-              weatherData={weatherData}
-              handleLogin={openLogin}
-              handleRegister={openRegister}
-            />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            handleLogin={openLogin}
+            handleRegister={openRegister}
+          />
 
+          <div className="page__content">
             <Routes>
               <Route
                 path="/"
@@ -235,6 +242,7 @@ function App() {
                     onAddClick={handleAddClick}
                     onCardLike={handleCardLike}
                     onEditProfile={openEditProfile}
+                    onSignOut={handleSignOut}
                   />
                 }
               />

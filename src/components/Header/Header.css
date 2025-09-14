@@ -1,8 +1,10 @@
 .header {
   display: flex;
+  justify-content: space-between; /* spread items apart */
   align-items: center;
-  justify-content: space-between;
-  padding: 32px 0 28px;
+  width: 100%; /* make header full width of its container */
+  padding: 32px 48px; /* horizontal padding so content isn’t squished */
+  box-sizing: border-box; /* ensure padding doesn’t affect width */
 }
 
 .header__left {
@@ -38,6 +40,13 @@
   line-height: 24px;
   border: none;
   cursor: pointer;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; 
+  object-fit: cover;
 }
 
 .header__avatar-placeholder {
