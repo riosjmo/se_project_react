@@ -36,20 +36,20 @@ export default function AddItemModal({
   };
 
   useEffect(() => {
-    const closeByEscape = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("keydown", closeByEscape);
+  const closeByEscape = (e) => {
+    if (e.key === "Escape") {
+      onClose();
     }
+  };
 
-    return () => {
-      document.removeEventListener("keydown", closeByEscape);
-    };
-  }, []);
+  if (isOpen) {
+    document.addEventListener("keydown", closeByEscape);
+  }
+
+  return () => {
+    document.removeEventListener("keydown", closeByEscape);
+  };
+}, [isOpen, onClose]);
 
   return (
     <ModalWithForm
@@ -59,12 +59,12 @@ export default function AddItemModal({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__name_label">
+      <label htmlFor="additem-name" className="modal__name_label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="additem-name"
           placeholder="Name"
           onChange={handleNameChange}
           value={name}

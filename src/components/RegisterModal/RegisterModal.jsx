@@ -5,7 +5,7 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,11 +42,11 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__name_label">
+      <label htmlFor="register-name" className="modal__name_label">
         Name *
         <input
           type="text"
-          id="name"
+          id="register-name"
           className="modal__input"
           placeholder="Enter your name"
           value={name}

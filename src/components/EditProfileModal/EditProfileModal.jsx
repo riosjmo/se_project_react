@@ -36,11 +36,11 @@ export default function EditProfileModal({ onClose, isOpen, onUpdateUser }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__name_label">
+      <label htmlFor="editprofile-name" className="modal__name_label">
         Name *
         <input
           type="text"
-          id="name"
+          id="editprofile-name"
           className="modal__input"
           placeholder="Name"
           value={name}

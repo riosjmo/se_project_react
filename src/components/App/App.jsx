@@ -46,24 +46,25 @@ function App() {
     }
   }, []);
 
-  const handleRegister = ({ name, email, password }) => {
-    // using a placeholder avatar URL
-    const avatar = "https://wallpapers.com/images/hd/dark-knight-vigilance-2yotvr39pm5plkec.jpg";
-
+  const handleRegister = ({ name, email, password, avatar }) => {
     signup({ name, avatar, email, password })
-      .then(() => {
-        return signin({ email, password });
-      })
-      .then((res) => {
-        console.log("Registered and logged in:", res);
-        localStorage.setItem("jwt", res.token);
-
-        closeRegister();
-      })
-      .catch((error) => {
-        console.error("Registration failed:", error);
-      });
-  };
+    .then(() => {
+      return signin({ email, password });
+    })
+    .then((res) => {
+      console.log("Registered and logged in:", res);
+      localStorage.setItem("jwt", res.token);
+      setIsLoggedIn(true);
+      return getUserData(res.token);
+    })
+    .then((user) => {
+      setCurrentUser(user);
+      closeRegister();
+    })
+    .catch((error) => {
+      console.error("Registration failed:", error);
+    });
+};
 
   const handleLogin = ({ email, password }) => {
     signin({ email, password })
