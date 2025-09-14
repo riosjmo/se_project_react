@@ -1,14 +1,22 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
 export default function Profile({
-  onCardClick,
   clothingItems,
+  onCardClick,
   onAddClick,
   onEditProfile,
   onSignOut,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
+
   return (
     <div className="profile">
       <aside className="profile__sidebar">
@@ -24,7 +32,7 @@ export default function Profile({
       <main className="profile__clothing-items">
         <ClothesSection
           onCardClick={onCardClick}
-          clothingItems={clothingItems}
+          clothingItems={userItems}
           onAddClick={onAddClick}
         />
       </main>

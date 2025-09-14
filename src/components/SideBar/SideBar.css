@@ -44,3 +44,8 @@
   text-align: left;
   margin-bottom: 10px;
 }
+
+.sidebar__edit-btn:hover,
+.sidebar__signout-btn:hover {
+  color: #00000099;
+}

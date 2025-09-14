@@ -48,7 +48,7 @@ function App() {
 
   const handleRegister = ({ name, email, password }) => {
     // using a placeholder avatar URL
-    const avatar = { avatar };
+    const avatar = "https://wallpapers.com/images/hd/dark-knight-vigilance-2yotvr39pm5plkec.jpg";
 
     signup({ name, avatar, email, password })
       .then(() => {
@@ -76,6 +76,7 @@ function App() {
       })
       .then((user) => {
         setCurrentUser(user);
+        closeLogin();
       })
       .catch((err) => console.error("Login failed:", err));
   };
