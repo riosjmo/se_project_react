@@ -35,22 +35,6 @@ export default function AddItemModal({
     setWeather("");
   };
 
-  useEffect(() => {
-  const closeByEscape = (e) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
-
-  if (isOpen) {
-    document.addEventListener("keydown", closeByEscape);
-  }
-
-  return () => {
-    document.removeEventListener("keydown", closeByEscape);
-  };
-}, [isOpen, onClose]);
-
   return (
     <ModalWithForm
       title="New Garment"

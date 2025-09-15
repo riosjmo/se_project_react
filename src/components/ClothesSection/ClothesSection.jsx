@@ -3,7 +3,7 @@ import "./ClothesSection.css";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
+export default function ClothesSection({ onCardClick, clothingItems, onAddClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   const userClothingItems = currentUser
@@ -20,7 +20,7 @@ export default function ClothesSection({ onCardClick, clothingItems, onAddClick 
       </div>
       <ul className="clothes-section__items">
         {userClothingItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+          <ItemCard key={item._id} item={item} onCardClick={onCardClick} onCardLike={onCardLike} />
         ))}
       </ul>
     </div>

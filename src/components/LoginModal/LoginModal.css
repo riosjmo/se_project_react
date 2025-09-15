@@ -1,0 +1,21 @@
+.modal__button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal__switch-btn {
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk Regular", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #00000080;
+  width: 80px;
+  position: relative;
+  padding: 0;
+  left: 128px;
+  top: 28px;
+}

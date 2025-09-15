@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.clothes-section__btn:hover {
+  color: #000000;
+}
+
 .clothes-section__items {
   display: flex;
   flex-wrap: wrap;

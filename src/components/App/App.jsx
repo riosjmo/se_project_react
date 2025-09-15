@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import React from "react";
+import React from "react"; 
 
 import "./App.css";
 import { coordinates, apiKey } from "../../utils/constants";
@@ -48,23 +48,23 @@ function App() {
 
   const handleRegister = ({ name, email, password, avatar }) => {
     signup({ name, avatar, email, password })
-    .then(() => {
-      return signin({ email, password });
-    })
-    .then((res) => {
-      console.log("Registered and logged in:", res);
-      localStorage.setItem("jwt", res.token);
-      setIsLoggedIn(true);
-      return getUserData(res.token);
-    })
-    .then((user) => {
-      setCurrentUser(user);
-      closeRegister();
-    })
-    .catch((error) => {
-      console.error("Registration failed:", error);
-    });
-};
+      .then(() => {
+        return signin({ email, password });
+      })
+      .then((res) => {
+        console.log("Registered and logged in:", res);
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
+        return getUserData(res.token);
+      })
+      .then((user) => {
+        setCurrentUser(user);
+        closeRegister();
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error);
+      });
+  };
 
   const handleLogin = ({ email, password }) => {
     signin({ email, password })
@@ -80,6 +80,16 @@ function App() {
         closeLogin();
       })
       .catch((err) => console.error("Login failed:", err));
+  };
+
+  const switchToRegister = () => {
+    closeLogin();
+    openRegister();
+  };
+
+  const switchToLogin = () => {
+    closeRegister();
+    openLogin();
   };
 
   const handleCardLike = ({ _id, likes }) => {
@@ -194,6 +204,22 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
   const handleDeleteCard = (card) => {
     const token = localStorage.getItem("jwt");
     deleteItem(card._id, token)
@@ -258,11 +284,13 @@ function App() {
               isOpen={isRegisterOpen}
               onClose={closeRegister}
               onRegister={handleRegister}
+              onLoginClick={switchToLogin}
             />
             <LoginModal
               isOpen={isLoginOpen}
               onClose={closeLogin}
               onLogin={handleLogin}
+              onRegisterClick={switchToRegister}
             />
             <Footer />
           </div>

@@ -2,7 +2,12 @@ import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
-export default function LoginModal({ onClose, isOpen, onLogin }) {
+export default function LoginModal({
+  onClose,
+  isOpen,
+  onLogin,
+  onRegisterClick,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,20 +22,6 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
     setPassword("");
   };
 
-  useEffect(() => {
-    const closeByEscape = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    if (isOpen) {
-      document.addEventListener("keydown", closeByEscape);
-    }
-    return () => {
-      document.removeEventListener("keydown", closeByEscape);
-    };
-  }, [isOpen, onClose]);
-
   return (
     <ModalWithForm
       title="Log In"
@@ -39,11 +30,11 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__name_label">
+      <label htmlFor="login-email" className="modal__name_label">
         Email
         <input
           type="email"
-          id="email"
+          id="login-email"
           className="modal__input"
           placeholder="Enter your email"
           value={email}
@@ -51,11 +42,11 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
           required
         />
       </label>
-      <label htmlFor="password" className="modal__image_label">
+      <label htmlFor="login-password" className="modal__image_label">
         Password
         <input
           type="password"
-          id="password"
+          id="login-password"
           className="modal__input"
           placeholder="Enter your password"
           value={password}
@@ -63,6 +54,13 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
           required
         />
       </label>
+      <button
+        type="button"
+        className="modal__switch-btn"
+        onClick={onRegisterClick}
+      >
+        or Sign Up
+      </button>
     </ModalWithForm>
   );
 }

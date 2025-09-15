@@ -47,12 +47,12 @@ export default function EditProfileModal({ onClose, isOpen, onUpdateUser }) {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label htmlFor="avatar" className="modal__image_label">
+      <label htmlFor="edit-profile-avatar" className="modal__image_label">
         Avatar URL *
         <input
           className="modal__input"
           type="url"
-          id="avatar"
+          id="edit-profile-avatar"
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
           placeholder="Avatar URL"

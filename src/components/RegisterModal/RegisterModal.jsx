@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
-export default function RegisterModal({ onClose, isOpen, onRegister }) {
+export default function RegisterModal({ onClose, isOpen, onRegister, onLoginClick }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,22 +17,8 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
     setName("");
     setEmail("");
     setPassword("");
-    setAvatar(null);
+    setAvatar("");
   };
-
-  useEffect(() => {
-    const closeByEscape = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    if (isOpen) {
-      document.addEventListener("keydown", closeByEscape);
-    }
-    return () => {
-      document.removeEventListener("keydown", closeByEscape);
-    };
-  }, [isOpen, onClose]);
 
   return (
     <ModalWithForm
@@ -88,8 +74,16 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
           placeholder="Enter your avatar URL"
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
+          required
         />
       </label>
+      <button
+        type="button"
+        className="modal__switch-btn"
+        onClick={onLoginClick}
+      >
+        or Log in
+      </button>
     </ModalWithForm>
   );
 }

@@ -10,6 +10,7 @@ export default function Profile({
   onAddClick,
   onEditProfile,
   onSignOut,
+  onCardLike
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -33,7 +34,8 @@ export default function Profile({
         <ClothesSection
           onCardClick={onCardClick}
           clothingItems={userItems}
-          onAddClick={onAddClick}
+          onAddClick={onAddClick} 
+          onCardLike={onCardLike}
         />
       </main>
     </div>
