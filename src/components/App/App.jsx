@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import React from "react"; 
+import React from "react";
 
 import "./App.css";
 import { coordinates, apiKey } from "../../utils/constants";
@@ -150,7 +150,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     updateUser({ name, avatar }, token)
       .then((updatedUser) => {
-        setCurrentUser(updatedUser);
+        setCurrentUser({ ...currentUser, ...updatedUser });
         closeEditProfile();
       })
       .catch((err) => console.error("Failed to update user:", err));
