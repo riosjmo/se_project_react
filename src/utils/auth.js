@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001";
+import { BASE_URL } from "./constants.js";
 import { checkResponse } from "./api";
 
 export const signup = ({ name, avatar, email, password }) => {
